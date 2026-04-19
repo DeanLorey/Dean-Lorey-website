@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dean Lorey — Website Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"Inter",system-ui,sans-serif;background:#0d0d12;color:#f0eee8;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  header{padding:64px 0 40px;text-align:center;border-bottom:1px solid #1f1f2a}
+  header .kicker{
+    font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:#8a8aa0;font-weight:700;
+  }
+  header h1{
+    font-size:clamp(36px,5vw,56px);margin:16px 0 12px;font-weight:800;letter-spacing:-.02em;
+  }
+  header p{max-width:640px;margin:0 auto;color:#b5b3c2;font-size:17px}
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:48px 0;
+  }
+  .card{
+    background:#15151f;border:1px solid #22222f;border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .25s,border-color .25s;
+  }
+  .card:hover{transform:translateY(-4px);border-color:#3a3a4a}
+  .preview{
+    aspect-ratio:16/10;overflow:hidden;position:relative;background:#0a0a10;
+  }
+  .preview iframe{
+    position:absolute;top:0;left:0;width:200%;height:200%;
+    transform:scale(.5);transform-origin:top left;border:0;pointer-events:none;
+  }
+  .body{padding:24px}
+  .body .tag{
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;font-weight:700;
+    color:#c6ff3d;margin-bottom:10px;
+  }
+  .body h2{font-size:24px;margin:0 0 8px;font-weight:700;letter-spacing:-.01em}
+  .body .sub{color:#8a8aa0;font-size:13px;margin:0 0 16px}
+  .body p{color:#c7c5d0;font-size:14px;margin:0 0 20px}
+  .body .meta{font-size:12px;color:#8a8aa0;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+  .body .meta span{padding:4px 10px;background:#1e1e2a;border-radius:999px}
+  .open{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 16px;border-radius:999px;background:#f0eee8;color:#0d0d12;
+    font-weight:700;font-size:13px;text-decoration:none;align-self:flex-start;
+  }
+  .open:hover{background:#fff}
+  footer{
+    padding:48px 0;text-align:center;color:#8a8aa0;font-size:13px;border-top:1px solid #1f1f2a;
+  }
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Website Concepts · April 2026</div>
+    <h1>Three directions for deanlorey.com</h1>
+    <p>Click any concept to open the full-page mockup. Each is a complete, responsive homepage built to showcase Dean's TV, film, and book credits and funnel visitors to Instagram.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="grid">
+
+    <article class="card">
+      <div class="preview"><iframe src="concepts/concept-1-editorial.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag">Concept 1</div>
+        <h2>Editorial</h2>
+        <p class="sub">Magazine-inspired. Serious craft. Adult audience.</p>
+        <p>Fraunces serif headlines, generous whitespace, cream paper palette with a warm red accent. Leads with the writing voice; Instagram lives in a high-contrast dark band at the bottom. Reads like a New Yorker profile.</p>
+        <div class="meta"><span>Cream &amp; ink</span><span>Serif</span><span>Sophisticated</span></div>
+        <a class="open" href="concepts/concept-1-editorial.html" target="_blank">Open concept →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="preview"><iframe src="concepts/concept-2-neon.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag">Concept 2</div>
+        <h2>Neon Noir</h2>
+        <p class="sub">Animated. Playful. Unmistakably DC.</p>
+        <p>Dark mode with pink/violet/cyan gradients that echo the Harley Quinn palette. Big Syne display type, scrolling credits marquee, animated gradient orbs. Built for the fans who found Dean through Harley and Creature Commandos.</p>
+        <div class="meta"><span>Dark mode</span><span>Bold sans</span><span>Energetic</span></div>
+        <a class="open" href="concepts/concept-2-neon.html" target="_blank">Open concept →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="preview"><iframe src="concepts/concept-3-storybook.html" loading="lazy"></iframe></div>
+      <div class="body">
+        <div class="tag">Concept 3</div>
+        <h2>Storybook</h2>
+        <p class="sub">Warm. Welcoming. Author-forward.</p>
+        <p>Cream paper, hand-placed "chip" cards, DM Serif Display headlines with a mustard highlight swoosh. Emphasizes Dean the storyteller and leans into the book audience. Instagram funnel uses the official IG gradient as a repeated visual anchor.</p>
+        <div class="meta"><span>Warm palette</span><span>Mixed type</span><span>Friendly</span></div>
+        <a class="open" href="concepts/concept-3-storybook.html" target="_blank">Open concept →</a>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<footer>
+  Open <code>index.html</code> in a browser to compare. Each concept is a single self-contained HTML file in <code>/concepts</code>.
+</footer>
+</body>
+</html>

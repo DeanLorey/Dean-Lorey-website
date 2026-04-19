@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dean Lorey — Concept 2: Neon Noir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a10;
+    --panel:#12121c;
+    --ink:#f2f0ea;
+    --muted:#8a8aa0;
+    --pink:#ff2e93;
+    --violet:#8a3ffc;
+    --cyan:#00e5ff;
+    --lime:#c6ff3d;
+    --rule:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Space Grotesk",system-ui,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+  /* animated background */
+  .bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .bg-orbs span{
+    position:absolute;border-radius:50%;filter:blur(120px);opacity:.55;
+    animation:float 22s ease-in-out infinite;
+  }
+  .bg-orbs span:nth-child(1){background:var(--pink);width:520px;height:520px;top:-160px;left:-120px}
+  .bg-orbs span:nth-child(2){background:var(--violet);width:480px;height:480px;top:340px;right:-140px;animation-delay:-6s}
+  .bg-orbs span:nth-child(3){background:var(--cyan);width:420px;height:420px;top:1100px;left:30%;animation-delay:-12s;opacity:.35}
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(40px,-30px) scale(1.08)}
+  }
+  /* nav */
+  header.nav{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:rgba(10,10,16,.7);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--rule);
+  }
+  .logo{
+    font-family:"Syne";font-weight:800;font-size:22px;letter-spacing:-.02em;
+  }
+  .logo .dot{color:var(--pink)}
+  nav.links a{margin-left:28px;font-size:14px;color:var(--muted);font-weight:500}
+  nav.links a:hover{color:var(--ink)}
+  .ig-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-left:24px;padding:10px 16px;border-radius:999px;
+    background:linear-gradient(90deg,var(--pink),var(--violet));
+    color:#fff;font-weight:600;font-size:13px;
+    box-shadow:0 8px 24px -8px rgba(255,46,147,.6);
+    transition:transform .2s ease;
+  }
+  .ig-btn:hover{transform:translateY(-1px)}
+  /* hero */
+  .hero{position:relative;z-index:1;padding:120px 0 80px}
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--lime);font-weight:600;margin-bottom:24px;
+    padding:6px 12px;border:1px solid var(--lime);border-radius:999px;
+  }
+  h1{
+    font-family:"Syne";font-weight:800;
+    font-size:clamp(60px,10vw,160px);line-height:.92;letter-spacing:-.03em;
+    margin:0 0 28px;
+  }
+  .gradient-text{
+    background:linear-gradient(90deg,var(--pink) 0%,var(--violet) 50%,var(--cyan) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{max-width:620px;font-size:20px;color:#c7c5d0;margin:0}
+  .hero-cta{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+  .btn{
+    padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--ink);color:var(--bg)}
+  .btn-ghost{border:1px solid var(--rule);color:var(--ink)}
+  .btn-ig{background:linear-gradient(90deg,var(--pink),var(--violet));color:#fff}
+  /* hero cards ticker */
+  .hero-strip{
+    position:relative;z-index:1;
+    display:flex;gap:14px;padding:40px 0;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    overflow:hidden;white-space:nowrap;
+  }
+  .strip-track{display:inline-flex;gap:40px;animation:slide 40s linear infinite}
+  .strip-track span{
+    font-family:"Syne";font-weight:800;font-size:40px;letter-spacing:-.02em;
+    color:#1d1d2c;
+  }
+  .strip-track span.hot{color:var(--pink)}
+  .strip-track span.cool{color:var(--cyan)}
+  .strip-track span.lime{color:var(--lime)}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  /* featured grid */
+  section{position:relative;z-index:1;padding:100px 0}
+  .section-label{
+    display:flex;align-items:center;gap:14px;margin-bottom:40px;
+    font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);
+  }
+  .section-label::before{content:"";width:40px;height:1px;background:var(--muted)}
+  h2{
+    font-family:"Syne";font-weight:800;font-size:clamp(40px,6vw,72px);
+    line-height:1;letter-spacing:-.02em;margin:0 0 48px;
+  }
+  .featured{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+  .card{
+    position:relative;border-radius:20px;overflow:hidden;
+    background:var(--panel);border:1px solid var(--rule);
+    padding:28px;min-height:320px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.18)}
+  .card::before{
+    content:"";position:absolute;inset:0;z-index:0;opacity:.22;
+    background:radial-gradient(circle at 70% 20%,var(--pink),transparent 60%),
+               radial-gradient(circle at 20% 90%,var(--violet),transparent 60%);
+  }
+  .card > *{position:relative;z-index:1}
+  .card.lg{grid-column:span 7}
+  .card.md{grid-column:span 5}
+  .card.sm{grid-column:span 4}
+  .card.wd{grid-column:span 8}
+  .card .tag{
+    font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+    font-weight:600;color:var(--lime);margin-bottom:16px;
+  }
+  .card h3{
+    font-family:"Syne";font-weight:800;font-size:48px;line-height:1;letter-spacing:-.02em;margin:0;
+  }
+  .card.lg h3{font-size:72px}
+  .card p{color:#b5b3c2;margin:16px 0 0;max-width:46ch}
+  .card .meta{margin-top:24px;font-size:13px;color:var(--muted)}
+  /* override gradient highlights per show */
+  .card.hq::before{background:radial-gradient(circle at 70% 20%,var(--pink),transparent 55%),radial-gradient(circle at 20% 90%,var(--violet),transparent 55%);opacity:.4}
+  .card.cc::before{background:radial-gradient(circle at 70% 20%,var(--cyan),transparent 55%),radial-gradient(circle at 20% 90%,#14746f,transparent 55%);opacity:.4}
+  .card.na::before{background:radial-gradient(circle at 70% 20%,#e8b923,transparent 55%),radial-gradient(circle at 20% 90%,var(--violet),transparent 55%);opacity:.4}
+  .card.ad::before{background:radial-gradient(circle at 70% 20%,#f4b400,transparent 55%),radial-gradient(circle at 20% 90%,#e67e22,transparent 55%);opacity:.4}
+  /* credits list */
+  .credits{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    border-radius:16px;overflow:hidden;
+    background:var(--rule);
+  }
+  .credit{
+    background:var(--panel);padding:22px 24px;
+    display:flex;flex-direction:column;gap:4px;
+    transition:background .2s;
+  }
+  .credit:hover{background:#181828}
+  .credit strong{font-size:18px;font-weight:600}
+  .credit span{font-size:13px;color:var(--muted)}
+  /* IG section */
+  .ig{
+    position:relative;z-index:1;padding:100px 0;
+    border-top:1px solid var(--rule);
+  }
+  .ig-header{
+    display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:40px;
+  }
+  .ig-header h2{margin:0}
+  .ig-header .sub{color:var(--muted);font-size:15px;max-width:420px}
+  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .ig-tile{
+    aspect-ratio:1;border-radius:8px;position:relative;overflow:hidden;cursor:pointer;
+  }
+  .ig-tile::before{
+    content:"";position:absolute;inset:0;
+  }
+  .ig-tile:nth-child(1)::before{background:linear-gradient(135deg,var(--pink),var(--violet))}
+  .ig-tile:nth-child(2)::before{background:linear-gradient(135deg,var(--cyan),#14746f)}
+  .ig-tile:nth-child(3)::before{background:linear-gradient(135deg,var(--lime),#0f3d2e)}
+  .ig-tile:nth-child(4)::before{background:linear-gradient(135deg,#e8b923,var(--pink))}
+  .ig-tile:nth-child(5)::before{background:linear-gradient(135deg,var(--violet),var(--cyan))}
+  .ig-tile:nth-child(6)::before{background:linear-gradient(135deg,#f4b400,#e67e22)}
+  .ig-tile:nth-child(7)::before{background:linear-gradient(135deg,var(--pink),#1a1033)}
+  .ig-tile:nth-child(8)::before{background:linear-gradient(135deg,#14746f,var(--lime))}
+  .ig-tile:nth-child(9)::before{background:linear-gradient(135deg,#6a1b9a,var(--cyan))}
+  .ig-tile:nth-child(10)::before{background:linear-gradient(135deg,var(--cyan),var(--pink))}
+  .ig-tile:nth-child(11)::before{background:linear-gradient(135deg,#e67e22,var(--violet))}
+  .ig-tile:nth-child(12)::before{background:linear-gradient(135deg,var(--lime),var(--pink))}
+  .ig-tile::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 60%);
+  }
+  .ig-banner{
+    margin-top:40px;padding:48px;border-radius:24px;
+    background:linear-gradient(120deg,var(--pink) 0%,var(--violet) 60%,var(--cyan) 100%);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;
+    color:#fff;
+  }
+  .ig-banner h3{
+    font-family:"Syne";font-weight:800;font-size:40px;line-height:1;margin:0 0 8px;
+  }
+  .ig-banner p{margin:0;opacity:.9;max-width:480px}
+  .ig-banner .btn{background:#0a0a10;color:#fff;padding:16px 24px}
+  footer{
+    position:relative;z-index:1;padding:48px 0;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;font-size:13px;color:var(--muted);
+  }
+  footer a{color:var(--ink);margin-left:16px}
+  @media(max-width:960px){
+    .featured .card{grid-column:span 12}
+    .credits{grid-template-columns:1fr}
+    .ig-grid{grid-template-columns:repeat(3,1fr)}
+    nav.links a:not(.ig-btn){display:none}
+  }
+</style>
+</head>
+<body>
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<header class="nav">
+  <div class="logo">DEAN<span class="dot">.</span>LOREY</div>
+  <nav class="links">
+    <a href="#work">Work</a>
+    <a href="#books">Books</a>
+    <a href="#about">About</a>
+    <a class="ig-btn" href="https://instagram.com/deanlorey" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg>
+      @deanlorey
+    </a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Now Streaming · Harley Quinn S5</div>
+    <h1>Dark comedy,<br>bright <span class="gradient-text">monsters.</span></h1>
+    <p>Dean Lorey is the co-creator of Max's <strong>Harley Quinn</strong>, showrunner of James Gunn's <strong>Creature Commandos</strong>, and author of the award-winning <strong>Nightmare Academy</strong> trilogy. Twenty-plus years of telling slightly unhinged stories for people with very good taste.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See the work →</a>
+      <a class="btn btn-ig" href="https://instagram.com/deanlorey" target="_blank" rel="noopener">Follow on Instagram</a>
+    </div>
+  </div>
+</div>
+
+<div class="hero-strip">
+  <div class="strip-track">
+    <span class="hot">Harley Quinn</span><span>·</span>
+    <span class="cool">Creature Commandos</span><span>·</span>
+    <span>Arrested Development</span><span>·</span>
+    <span class="lime">Nightmare Academy</span><span>·</span>
+    <span>Kite Man: Hell Yeah!</span><span>·</span>
+    <span class="hot">My Wife and Kids</span><span>·</span>
+    <span class="cool">Major Payne</span><span>·</span>
+    <span>iZombie</span><span>·</span>
+    <span class="lime">Poppa's House</span><span>·</span>
+    <!-- duplicate -->
+    <span class="hot">Harley Quinn</span><span>·</span>
+    <span class="cool">Creature Commandos</span><span>·</span>
+    <span>Arrested Development</span><span>·</span>
+    <span class="lime">Nightmare Academy</span><span>·</span>
+    <span>Kite Man: Hell Yeah!</span><span>·</span>
+    <span class="hot">My Wife and Kids</span><span>·</span>
+    <span class="cool">Major Payne</span><span>·</span>
+    <span>iZombie</span><span>·</span>
+    <span class="lime">Poppa's House</span><span>·</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="work">
+    <div class="section-label">Featured Work</div>
+    <h2>The big four.</h2>
+    <div class="featured">
+      <article class="card lg hq">
+        <div class="tag">Max · 2019 — Present</div>
+        <h3>Harley Quinn</h3>
+        <p>Co-creator, showrunner, and executive producer of DC's foul-mouthed animated hit. Emmy-nominated, cult-beloved, five seasons deep.</p>
+        <div class="meta">30+ episodes written / produced · also Kite Man: Hell Yeah!</div>
+      </article>
+      <article class="card md cc">
+        <div class="tag">Max · DCU</div>
+        <h3>Creature Commandos</h3>
+        <p>Showrunner of the first project in James Gunn's new DC Universe.</p>
+        <div class="meta">2024 — Present</div>
+      </article>
+      <article class="card sm na">
+        <div class="tag">Books</div>
+        <h3>Nightmare Academy</h3>
+        <p>SCIBA Award-winning middle-grade fantasy trilogy.</p>
+        <div class="meta">Monster Hunters, Madness &amp; War</div>
+      </article>
+      <article class="card wd ad">
+        <div class="tag">Netflix · 2005 — 2013</div>
+        <h3>Arrested Development</h3>
+        <p>Writer and producer on the Bluths — 24 episodes across the original Fox run and the Netflix revival.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="books">
+    <div class="section-label">All Credits</div>
+    <h2>Also responsible for&hellip;</h2>
+    <div class="credits">
+      <div class="credit"><strong>Poppa's House</strong><span>CBS · Co-EP · 2024</span></div>
+      <div class="credit"><strong>Kite Man: Hell Yeah!</strong><span>Max · EP · 2024</span></div>
+      <div class="credit"><strong>My Wife and Kids</strong><span>ABC · 111 episodes</span></div>
+      <div class="credit"><strong>iZombie</strong><span>The CW · Writer/Producer</span></div>
+      <div class="credit"><strong>Powerless</strong><span>NBC · Writer/Producer</span></div>
+      <div class="credit"><strong>The Crazy Ones</strong><span>CBS · Writer/Producer</span></div>
+      <div class="credit"><strong>My Boys</strong><span>TBS · Writer/Producer</span></div>
+      <div class="credit"><strong>Til Death</strong><span>FOX · Writer/Producer</span></div>
+      <div class="credit"><strong>Those Who Can't</strong><span>truTV · Writer/Producer</span></div>
+      <div class="credit"><strong>Major Payne</strong><span>Feature · Co-Writer · 1995</span></div>
+      <div class="credit"><strong>My Boss's Daughter</strong><span>Feature · Writer · 2003</span></div>
+      <div class="credit"><strong>Animal Crackers</strong><span>Feature · Writer · 2017</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="ig" id="ig">
+  <div class="wrap">
+    <div class="ig-header">
+      <div>
+        <div class="section-label">On Instagram</div>
+        <h2>@deanlorey</h2>
+      </div>
+      <div class="sub">Set photos, writers' room chaos, book sightings, and the occasional monster. Come hang.</div>
+    </div>
+    <div class="ig-grid">
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+      <div class="ig-tile"></div><div class="ig-tile"></div>
+    </div>
+    <div class="ig-banner">
+      <div>
+        <h3>See what I'm working on.</h3>
+        <p>Behind-the-scenes stuff I don't post anywhere else. Plus dogs.</p>
+      </div>
+      <a class="btn" href="https://instagram.com/deanlorey" target="_blank" rel="noopener">
+        Follow @deanlorey →
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div>© 2026 Dean Lorey</div>
+    <div>
+      <a href="https://instagram.com/deanlorey">Instagram</a>
+      <a href="#">Contact</a>
+      <a href="#">Press</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
